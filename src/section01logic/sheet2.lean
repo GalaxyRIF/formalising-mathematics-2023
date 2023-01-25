@@ -26,54 +26,83 @@ if you can understand what's going on.
 
 -- Throughout this sheet, `P`, `Q` and `R` will denote propositions.
 
+
+-- triv:trivial
+-- exfalso: maybe used for contradiction?
 variables (P Q R : Prop)
 
 example : true :=
 begin
-  sorry
+  triv,
 end
 
 example : true → true :=
 begin
-  sorry
+  intro ht,
+  triv,
 end
 
 example : false → true :=
 begin
-  sorry
+  intro hp,
+  exfalso,
+  triv,
 end
 
 example : false → false :=
 begin
-  sorry
+  intro hp,
+  exfalso,
+  triv,
+  --exact hp also works
 end
 
 example : (true → false) → false :=
 begin
-  sorry
+  intro htf,
+  exfalso,
+  apply htf,
+  triv,
 end
 
 example : false → P :=
 begin
-  sorry
+  intro hf,
+  exfalso,
+  apply hf,
 end
 
 example : true → false → true → false → true → false :=
 begin
-  sorry
+  intro ha,
+  intro hb,
+  intro hc,
+  intro hd,
+  intro he,
+  exact hb,
 end
 
 example : P → ((P → false) → false) :=
 begin
-  sorry
+  intro hP,
+  intro hfp,
+  apply hfp,
+  apply hP,
 end
 
 example : (P → false) → P → Q :=
 begin
-  sorry
+  intro hpf,
+  intro hp,
+  exfalso,
+  apply hpf,
+  apply hp,
 end
 
 example : (true → false) → P :=
 begin
-  sorry
+  intro htf,
+  exfalso,
+  apply htf,
+  triv,
 end

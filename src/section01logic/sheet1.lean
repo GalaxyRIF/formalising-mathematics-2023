@@ -98,7 +98,8 @@ using `intro`, `exact` and `apply`.
 /-- Every proposition implies itself. -/
 example : P → P :=
 begin
-  sorry
+  intro h,
+  exact h,
 end
 
 /-
@@ -118,28 +119,44 @@ So the next level is asking you prove that `P → (Q → P)`.
 -/
 example : P → Q → P :=
 begin
-  sorry
+  intro hP,
+  intro hQ,
+  exact hP,
 end
 
 /-- If we know `P`, and we also know `P → Q`, we can deduce `Q`. 
 This is called "Modus Ponens" by logicians. -/
 example : P → (P → Q) → Q :=
 begin
-  sorry
+  intro hP,
+  intro hPQ,
+  apply hPQ,
+  apply hP,
 end
 
 /-- `→` is transitive. That is, if `P → Q` and `Q → R` are true, then
   so is `P → R`. -/
 example : (P → Q) → (Q → R) → (P → R) :=
 begin
-  sorry,
+  intro hPQ,
+  intro hQR,
+  intro P,
+  apply hQR,
+  apply hPQ,
+  exact P,
 end
 
 -- If `h : P → Q → R` with goal `⊢ R` and you `apply h`, you'll get
 -- two goals! Note that tactics operate on only the first goal.
 example : (P → Q → R) → (P → Q) → (P → R) :=
 begin
-  sorry
+  intro hPQR,
+  intro hPQ,
+  intro hP,
+  apply hPQR,
+  exact hP,
+  apply hPQ,
+  exact hP,
 end
 
 /- 
@@ -156,33 +173,74 @@ variables (S T : Prop)
 
 example : (P → R) → (S → Q) → (R → T) → (Q → R) → S → T :=
 begin
-  sorry
+  intro hpq,
+  intro hsq,
+  intro hrt,
+  intro hqr,
+  intro hs,
+  apply hrt,
+  apply hqr,
+  apply hsq,
+  apply hs,
 end
 
 example : (P → Q) → ((P → Q) → P) → Q :=
 begin
-  sorry
+  intro hpq,
+  intro hpqp,
+  apply hpq,
+  apply hpqp,
+  exact hpq,
 end
 
 example : ((P → Q) → R) → ((Q → R) → P) → ((R → P) → Q) → P :=
 begin
-  sorry
+  intro hpqr,
+  intro hqrp,
+  intro hrpq,
+  apply hqrp,
+  intro hq,
+  apply hpqr,
+  intro p,
+  exact hq,
 end
 
 example : ((Q → P) → P) → (Q → R) → (R → P) → P :=
 begin
-  sorry
+  intro hppp,
+  intro hqr,
+  intro hrp,
+  apply hppp,
+  intro hq,
+  apply hrp,
+  apply hqr,
+  exact hq,
 end
 
 example : (((P → Q) → Q) → Q) → (P → Q) :=
 begin
-  sorry
+  intro hpqqq,
+  intro hp,
+  apply hpqqq,
+  intro hpq,
+  apply hpq,
+  exact hp,
 end
 
+--/ what happened here?--/
 example :
   (((P → Q → Q) → ((P → Q) → Q)) → R) →
   ((((P → P) → Q) → (P → P → Q)) → R) →
   (((P → P → Q) → ((P → P) → Q)) → R) → R :=
 begin
-  sorry
+  intro a,
+  intro b,
+  intro c,
+  apply b,
+  intro hppq,
+  intro hpp,
+  intro hp,
+  apply hppq,
+  intro hhp,
+  apply hhp,
 end
