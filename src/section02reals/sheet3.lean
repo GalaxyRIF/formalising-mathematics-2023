@@ -84,18 +84,30 @@ but it can't do anything with it if it's a variable.
 /-- The limit of the constant sequence with value 37 is 37. -/
 theorem tends_to_thirtyseven : tends_to (λ n, 37) 37 :=
 begin
-  sorry,
+  rw tends_to_def,
+  intros ε hε,
+  use 37,
+  intros n hn,
+  
+  norm_num,
+  exact hε,
 end
 
 /-- The limit of the constant sequence with value `c` is `c`. -/
 theorem tends_to_const (c : ℝ) : tends_to (λ n, c) c :=
 begin
-  sorry,
+  rw tends_to_def,
+  intros ε hε,
+  use 2,
+  intros n hn,
+  norm_num,
+  exact hε,
+
 end
 
 /-- If `a(n)` tends to `t` then `a(n) + c` tends to `t + c` -/
 theorem tends_to_add_const {a : ℕ → ℝ} {t : ℝ} (c : ℝ)
-  (h : tends_to a t) :
+  (h : tends_to  a t) :
   tends_to (λ n, a n + c) (t + c) :=
 begin
   sorry,

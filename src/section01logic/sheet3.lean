@@ -114,5 +114,10 @@ end
 
 example : (¬ Q → ¬ P) → (P → Q) :=
 begin
-sorry,
+  intros h1 h2,
+  change (Q→ false)→ (P→ false) at h1,
+  by_contra h3,
+  apply h1,
+  assumption,
+  assumption,
 end

@@ -46,11 +46,15 @@ end
 
 example : ∀ (x : ℝ), ∃ y, x + y = 2 :=
 begin
-  intro h,
-
+  intros hx ,
+  use 2-hx,
+  ring,
 end
 
 example : ∀ (x : ℝ), ∃ y, x + y ≠ 2 :=
 begin
-  sorry,
+  intro hx,
+  use 3-hx,
+  ring,
+  norm_num,
 end

@@ -173,15 +173,21 @@ variables (S T : Prop)
 
 example : (P → R) → (S → Q) → (R → T) → (Q → R) → S → T :=
 begin
-  intro hpq,
-  intro hsq,
-  intro hrt,
-  intro hqr,
-  intro hs,
-  apply hrt,
-  apply hqr,
-  apply hsq,
-  apply hs,
+  -- intro hpq,
+  -- intro hsq,
+  -- intro hrt,
+  -- intro hqr,
+  -- intro hs,
+  -- apply hrt,
+  -- apply hqr,
+  -- apply hsq,
+  -- apply hs,
+  intros hPR hSQ hRT hQR hST,
+  apply hRT,
+  clear hPR,
+  apply hQR,
+  apply hSQ,
+  exact hST,
 end
 
 example : (P → Q) → ((P → Q) → P) → Q :=
@@ -233,14 +239,15 @@ example :
   ((((P → P) → Q) → (P → P → Q)) → R) →
   (((P → P → Q) → ((P → P) → Q)) → R) → R :=
 begin
-  intro a,
-  intro b,
-  intro c,
-  apply b,
-  intro hppq,
-  intro hpp,
-  intro hp,
-  apply hppq,
-  intro hhp,
-  apply hhp,
+  -- intro a,
+  -- intro b,
+  -- intro c,
+  -- apply b,
+  -- intro hppq,
+  -- intro hpp,
+  -- intro hp,
+  -- apply hppq,
+  -- intro hhp,
+  -- apply hhp,
+  tauto!,
 end
